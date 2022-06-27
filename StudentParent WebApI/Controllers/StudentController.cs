@@ -28,7 +28,7 @@ namespace StudentParent_WebApI.Controllers
             return Ok(students);
         }
 
-        [HttpGet("(studentId)")]
+        [HttpGet("{studentId}")]
         public IActionResult GetStudent(int studentId)
         {
             if (!_studentRepository.StudentExists(studentId))
@@ -39,6 +39,7 @@ namespace StudentParent_WebApI.Controllers
                 return BadRequest(ModelState);
             return Ok(student);
         }
+
         [HttpGet("{studentId}/rating")]
         public IActionResult GetStudentRating(int studentId)
         {

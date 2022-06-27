@@ -27,7 +27,7 @@ namespace StudentParent_WebApI.Controllers
             return Ok(subjects);
         }
 
-        [HttpGet("(subjectId)")]
+        [HttpGet("{subjectId}")]
         public IActionResult GetSubject(int subjectId)
         {
             if (!_subjectRepository.SubjectExists(subjectId))

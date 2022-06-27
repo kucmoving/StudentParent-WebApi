@@ -12,8 +12,8 @@ using StudentParent_WebApI.Data;
 namespace StudentParent_WebApI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220627090756_initialcreate")]
-    partial class initialcreate
+    [Migration("20220627171437_fixdata")]
+    partial class fixdata
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,7 +169,7 @@ namespace StudentParent_WebApI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stubjects");
+                    b.ToTable("Subjects");
                 });
 
             modelBuilder.Entity("StudentParent_WebApI.Models.Teacher", b =>

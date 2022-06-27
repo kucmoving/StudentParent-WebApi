@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StudentParent_WebApI.Migrations
 {
-    public partial class initialcreate : Migration
+    public partial class fixdata : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,19 +23,6 @@ namespace StudentParent_WebApI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Stubjects",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Stubjects", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Students",
                 columns: table => new
                 {
@@ -47,6 +34,19 @@ namespace StudentParent_WebApI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Subjects",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subjects", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,15 +96,15 @@ namespace StudentParent_WebApI.Migrations
                 {
                     table.PrimaryKey("PK_StudentSubject", x => new { x.StudentId, x.SubjectId });
                     table.ForeignKey(
-                        name: "FK_StudentSubject_Stubjects_SubjectId",
-                        column: x => x.SubjectId,
-                        principalTable: "Stubjects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_StudentSubject_Students_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StudentSubject_Subjects_SubjectId",
+                        column: x => x.SubjectId,
+                        principalTable: "Subjects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -206,10 +206,10 @@ namespace StudentParent_WebApI.Migrations
                 name: "Parents");
 
             migrationBuilder.DropTable(
-                name: "Stubjects");
+                name: "Students");
 
             migrationBuilder.DropTable(
-                name: "Students");
+                name: "Subjects");
 
             migrationBuilder.DropTable(
                 name: "SchoolClubs");

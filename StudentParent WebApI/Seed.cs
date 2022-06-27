@@ -30,9 +30,9 @@ namespace StudentParent_WebApI
                             {
                                 new Comment { Title="Ken",Content = "he always for get to bring his homework", Rating = 1,
                                 Teacher = new Teacher(){ FirstName = "Carol", LastName = "Smith" } },
-                                new Comment { Title="Pikachu",Content = "just a sleeping baby in my lecture", Rating = 2,
+                                new Comment { Title="Ken",Content = "just a sleeping baby in my lecture", Rating = 2,
                                 Teacher = new Teacher(){ FirstName = "James", LastName = "White" } },
-                                new Comment { Title="Pikachu",Content = "absent all the day", Rating = 1,
+                                new Comment { Title="Ken",Content = "absent all the day", Rating = 1,
                                 Teacher = new Teacher(){ FirstName = "Paul", LastName = "Lee" } },
                             }
                         },

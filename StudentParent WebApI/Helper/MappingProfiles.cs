@@ -11,6 +11,9 @@ namespace StudentParent_WebApI.Helper
             CreateMap<Student, StudentDto>();
             CreateMap<Subject, SubjectDto>();
             CreateMap<SchoolClub, SchoolClubDto>();
+            CreateMap<Parent, ParentDto>();
+            CreateMap<Comment, CommentDto>();
+            CreateMap<Teacher, TeacherDto>();
 
         }
     }

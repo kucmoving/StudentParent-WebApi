@@ -24,7 +24,8 @@ namespace StudentParent_WebApI.Controllers
         [HttpGet]
         public IActionResult GetSchoolClubs()
         {
-            var schoolClubs = _mapper.Map<List<SchoolClubDto>>(_schoolClubRepository.GetSchoolClubs());
+            var schoolClubs = _mapper.Map<List<SchoolClubDto>>(
+                _schoolClubRepository.GetSchoolClubs());
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(schoolClubs);
@@ -44,14 +45,14 @@ namespace StudentParent_WebApI.Controllers
         }
 
 
-        [HttpGet("(parents)/{parentId}")]
+        [HttpGet("parents/{parentId}")]
         public IActionResult GetSchoolClubByParentId(int parentId)
         {
             var schoolClub = _mapper.Map<SchoolClubDto>(
                 _schoolClubRepository.GetSchoolClubByParentId(parentId));
 
             if (!ModelState.IsValid)
-                return BadRequest();
+                return BadRequest(ModelState);
             return Ok(schoolClub);
         }   
     }
