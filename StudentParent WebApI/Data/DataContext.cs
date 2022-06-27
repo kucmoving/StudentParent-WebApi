@@ -14,7 +14,7 @@ namespace StudentParent_WebApI.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<StudentParent> StudentParents { get; set; }
         public DbSet<StudentSubject> StudentSubject { get; set; }
-        public DbSet<Subject> Stubjects { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
