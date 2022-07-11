@@ -10,5 +10,15 @@ namespace StudentParent_WebApI.Interface
         ICollection<Student> GetStudentBySubjectId(int subjectId);
         bool SubjectExists(int id);
 
+        //create
+        bool CreateSubject(Subject subject); //signautre
+        bool Save();
+
+        //update
+
+        bool UpdateSubject(Subject subject);
+
+        bool DeleteSubject(Subject subject);
+
     }
 }

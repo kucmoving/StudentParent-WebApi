@@ -8,12 +8,12 @@ namespace StudentParent_WebApI.Helper
     {
         public MappingProfiles()
         {
-            CreateMap<Student, StudentDto>();
-            CreateMap<Subject, SubjectDto>();
-            CreateMap<SchoolClub, SchoolClubDto>();
-            CreateMap<Parent, ParentDto>();
-            CreateMap<Comment, CommentDto>();
-            CreateMap<Teacher, TeacherDto>();
+            CreateMap<Student, StudentDto>().ReverseMap();
+            CreateMap<Subject, SubjectDto>().ReverseMap();
+            CreateMap<SchoolClub, SchoolClubDto>().ReverseMap();
+            CreateMap<Parent, ParentDto>().ReverseMap();
+            CreateMap<Comment, CommentDto>().ReverseMap();
+            CreateMap<Teacher, TeacherDto>().ReverseMap();
 
         }
     }

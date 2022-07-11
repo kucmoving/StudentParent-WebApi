@@ -10,5 +10,14 @@ namespace StudentParent_WebApI.Interface
 
         bool CommentExists(int reviewId);
 
+        //create
+        bool CreateComment(Comment comment); //signautre
+        bool Save();
+
+        bool UpdateComment(Comment comment);
+
+        bool DeleteComment(Comment comment);
+        bool DeleteComments(List<Comment> Comments);
+
     }
 }

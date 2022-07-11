@@ -14,7 +14,6 @@ namespace StudentParent_WebApI.Repository
         }
 
 
-
         //nested entity have to use .select 
         //pick the id and select take the value from relationship
         //include also can help
@@ -24,9 +23,6 @@ namespace StudentParent_WebApI.Repository
             return _dataContext.StudentSubject.Where(x => x.SubjectId == subjectId)
                 .Select(c=>c.Student).ToList();
         }
-
-
-
 
         public Subject GetSubject(int id)
         {
@@ -41,6 +37,33 @@ namespace StudentParent_WebApI.Repository
         public bool SubjectExists(int id)
         {
             return _dataContext.Subjects.Any(s=>s.Id== id);
+        }
+
+
+
+
+        public bool CreateSubject(Subject subject)
+        {
+            _dataContext.Add(subject);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _dataContext.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdateSubject(Subject subject)
+        {
+            _dataContext.Update(subject);
+            return Save();
+        }
+
+        public bool DeleteSubject(Subject subject)
+        {
+            _dataContext.Remove(subject);
+            return Save();
         }
     }
 }

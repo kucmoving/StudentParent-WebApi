@@ -18,6 +18,9 @@ namespace StudentParent_WebApI.Repository
             return _dataContext.Comments.Any(x => x.Id == commentId);
         }
 
+
+
+
         public Comment GetComment(int commentId)
         {
             return _dataContext.Comments.Where(x => x.Id == commentId).FirstOrDefault();
@@ -33,5 +36,38 @@ namespace StudentParent_WebApI.Repository
             return _dataContext.Comments.Where(x => x.Student.Id == studentId).ToList();
 
         }
+
+        public bool CreateComment(Comment comment)
+        {
+            _dataContext.Add(comment);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _dataContext.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdateComment(Comment comment)
+        {
+            _dataContext.Update(comment);
+            return Save();
+        }
+
+        public bool DeleteComment(Comment comment)
+        {
+            _dataContext.Remove(comment);
+            return Save();
+        }
+
+        public bool DeleteComments(List<Comment> comments)
+        {
+            _dataContext.RemoveRange(comments); //remove range
+            return Save();
+        }
+
+
     }
 }
+

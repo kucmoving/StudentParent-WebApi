@@ -44,5 +44,31 @@ namespace StudentParent_WebApI.Repository
         {
             return _dataContext.SchoolClubs.Any(x => x.Id == id);
         }
+
+        public bool CreateSchoolClub(SchoolClub schoolclub)
+        {
+            _dataContext.Add(schoolclub);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _dataContext.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdateSchoolClub(SchoolClub schoolclub)
+        {
+            _dataContext.Update(schoolclub);
+            return Save();
+        }
+
+        public bool DeleteSchoolClub(SchoolClub schoolClub)
+        {
+            _dataContext.Remove(schoolClub);
+            return Save();
+        }
+
     }
 }
+

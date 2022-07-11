@@ -42,5 +42,33 @@ namespace StudentParent_WebApI.Repository
         {
             return _dataContext.Parents.Any(x => x.Id == parentId);
         }
+
+        public bool CreateParent(Parent parent)
+        {
+            _dataContext.Add(parent);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _dataContext.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdateParent(Parent parent)
+        {
+            _dataContext.Update(parent);
+            return Save();
+        }
+
+
+        public bool DeleteParent(Parent parent)
+        {
+            _dataContext.Remove(parent);
+            return Save();
+        }
     }
 }
+
+
+

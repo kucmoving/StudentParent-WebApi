@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StudentParent_WebApI.Dto;
 using StudentParent_WebApI.Interface;
+using StudentParent_WebApI.Models;
 
 namespace StudentParent_WebApI.Controllers
 {
@@ -11,11 +12,15 @@ namespace StudentParent_WebApI.Controllers
     {
         private readonly IParentRepository _parentRepository;
         private readonly IMapper _mapper;
+        private readonly ISchoolClubRepository _schoolClubRepository;
+        private readonly ICommentRepository _commentRepository;
 
-        public ParentController(IParentRepository parentRepository, IMapper mapper)
+        public ParentController(IParentRepository parentRepository, IMapper mapper
+            , ISchoolClubRepository schoolClubRepository)
         {
             _parentRepository = parentRepository;
             _mapper = mapper;
+            _schoolClubRepository = schoolClubRepository;
         }
 
 
@@ -29,7 +34,7 @@ namespace StudentParent_WebApI.Controllers
         }
 
         [HttpGet("{parentId}")]
-        public IActionResult GetOwner(int parentId)
+        public IActionResult GetParent(int parentId)
         {
             if (!_parentRepository.ParentExists(parentId))
                 return NotFound();
@@ -59,6 +64,83 @@ namespace StudentParent_WebApI.Controllers
 
             return Ok(parent);
         }
+
+
+        [HttpPost]
+        public IActionResult CreateParent([FromQuery] int parentId, [FromBody] ParentDto parentCreate) //take the id from link
+        {
+            if (parentCreate == null)
+                return BadRequest(ModelState);
+            var subject = _parentRepository.GetParents()
+                .Where(X => X.LastName.Trim().ToUpper() == parentCreate.LastName.TrimEnd()
+                .ToUpper()).FirstOrDefault();
+            if (subject != null)
+            {
+                ModelState.AddModelError("", "Parent already exists");
+                return StatusCode(422, ModelState);
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var parentMap = _mapper.Map<Parent>(parentCreate);
+
+            parentMap.SchoolClub = _schoolClubRepository.GetSchoolClub(parentId); //put id in parentMap (buy input)
+
+            if (!_parentRepository.CreateParent(parentMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+            return Ok("Successfully Created");
+        }
+
+
+        [HttpPut("{parentId}")]
+        public IActionResult UpdateParent(int parentId, [FromBody] ParentDto updatedParent)
+        {
+            if (updatedParent == null)
+                return BadRequest(ModelState);
+
+            if (parentId != updatedParent.Id)
+                return BadRequest(ModelState);
+
+            if (!_parentRepository.ParentExists(parentId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var parentMap = _mapper.Map<Parent>(updatedParent);
+
+            if (!_parentRepository.UpdateParent(parentMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating parent");
+                return StatusCode(500, ModelState);
+            }
+            return NoContent();
+        }
+        [HttpDelete("{parentId}")]
+        public IActionResult DeleteParent(int parentId)
+        {
+            if (!_parentRepository.ParentExists(parentId))
+            {
+                return NotFound();
+            }
+
+            var parentToDelete = _parentRepository.GetParent(parentId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_parentRepository.DeleteParent(parentToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting parent");
+            }
+            return NoContent();
+
+        }
+
 
 
     }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StudentParent_WebApI.Dto;
 using StudentParent_WebApI.Interface;
+using StudentParent_WebApI.Models;
 
 namespace StudentParent_WebApI.Controllers
 {
@@ -49,6 +50,80 @@ namespace StudentParent_WebApI.Controllers
             return Ok(students);
 
         }
-    }
 
+
+        [HttpPost]
+        public IActionResult CreateSubject([FromBody] SubjectDto subjectCreate)
+        {
+            if (subjectCreate == null)
+                return BadRequest(ModelState);
+            var subject = _subjectRepository.GetSubjects()
+                .Where(X => X.Name.Trim().ToUpper() == subjectCreate.Name.TrimEnd()
+                .ToUpper()).FirstOrDefault();
+            if(subject != null)
+            {
+                ModelState.AddModelError("", "Subject already exists");
+                return StatusCode(422, ModelState);
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var subjectMap = _mapper.Map<Subject>(subjectCreate);
+            if (!_subjectRepository.CreateSubject(subjectMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+            return Ok("Successfully Created");
+        }
+
+        [HttpPut("{subjectId}")]
+        public IActionResult UpdateSubject(int subjectId, [FromBody] SubjectDto updatedSubject)
+        {
+            if (updatedSubject == null)
+                return BadRequest(ModelState);
+            
+            if (subjectId != updatedSubject.Id)
+                return BadRequest(ModelState);
+
+            if (!_subjectRepository.SubjectExists(subjectId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var subjectMap = _mapper.Map<Subject>(updatedSubject);
+
+            if (!_subjectRepository.UpdateSubject(subjectMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating category");
+                return StatusCode(500, ModelState);
+            }
+            return NoContent();
+        }
+
+        [HttpDelete("{subjectId}")]
+        public IActionResult DeleteSubject(int subjectId)
+        {
+            if (!_subjectRepository.SubjectExists(subjectId))
+            {
+                return NotFound();
+            }
+
+            var subjectToDelete = _subjectRepository.GetSubject(subjectId);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_subjectRepository.DeleteSubject(subjectToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting subject");
+            }
+            return NoContent();
+
+        }
+
+
+    }
 }

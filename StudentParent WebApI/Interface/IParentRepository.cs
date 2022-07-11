@@ -10,5 +10,14 @@ namespace StudentParent_WebApI.Interface
         ICollection<Parent> GetParentByStudentId(int studentId);
         ICollection<Student> GetStudentByParentId(int parentId);
         bool ParentExists(int parentId);
+
+        //create
+        bool CreateParent(Parent parent); //signautre
+        bool Save();
+
+        bool UpdateParent(Parent parent);
+        bool DeleteParent(Parent parent);
+
     }
 }
+

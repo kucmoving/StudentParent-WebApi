@@ -10,5 +10,17 @@ namespace StudentParent_WebApI.Interface
 
         ICollection<Parent> GetParentsFromASchoolClub(int schoolClubId);
         bool SchoolClubExists(int id);
+
+
+        //create
+        bool CreateSchoolClub(SchoolClub schoolclub); //signautre
+        bool Save();
+
+
+        //update
+
+        bool UpdateSchoolClub(SchoolClub schoolclub);
+        bool DeleteSchoolClub(SchoolClub schoolClub);
+
     }
 }
