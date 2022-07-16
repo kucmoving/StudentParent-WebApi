@@ -20,22 +20,30 @@ This mini project is built for asp.net core CRUD practice, from scratch to testi
     "DefaultConnection": "Data Source=LAPTOP-NCT36AOV\\SQLEXPRESS;Initial Catalog=ParentStudentWebAPI;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
   },
   ```
-6A. add migration<br>
+
+6. add migration<br>
 ```dotnet ef migrations add InitialCreate```
 
-6B. update database(br>
+7. update database<br>
 ```dotnet ef database update```
 
-6. data seeding<br>
+8. data seeding<br>
 ```$ dotnet run seeddata```<br>
 ```$ cd StudentParent WebApI```
 
-7. turn on the backend server<br>
+9. turn on the backend server<br>
 ```$ cd StudentParent WebApI```<br>
 ```$ dotnet watch run```
 
-8. You should now turn on the backend server successfully. You can test api base on the data in database.
+10. You should now turn on the backend server successfully. You can test api base on the data in database.
 
 ![未命名](https://user-images.githubusercontent.com/92262463/179341772-6f2077d0-11da-4adc-919c-bd0550a77f51.jpg)
 
+<h2>Lesson Learned</h2>
+Here are some elements i have learnt after this project:
+- creating table and relationship<br>, highly recommand using tool like<br>
+  ```https://lucid.app/```<br>
+  ```https://draw.io/```<br>
+- adding migration, seeding data and connecting to database
+- building CRUD function in asp.net
 
