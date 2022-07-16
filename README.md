@@ -1,6 +1,14 @@
 <h2>Introduction</h2> 
 This mini project is built for asp.net core CRUD practice, from scratch to testing api in API endpoint.
 
+<h2>Lesson Learned</h2>
+Here are some elements i have learnt after this project:<br>
+1. creating table and relationship, highly recommand using tool like<br>
+  https://lucid.app/<br>
+  https://draw.io/<br>
+2. adding migration, seeding data and connecting to database<br>
+3. building CRUD function in asp.net<br>
+
 <h2>Get started</h2>
 
 1. clone this project <br>
@@ -39,11 +47,5 @@ This mini project is built for asp.net core CRUD practice, from scratch to testi
 
 ![未命名](https://user-images.githubusercontent.com/92262463/179341772-6f2077d0-11da-4adc-919c-bd0550a77f51.jpg)
 
-<h2>Lesson Learned</h2>
-Here are some elements i have learnt after this project:
-- creating table and relationship<br>, highly recommand using tool like<br>
-  ```https://lucid.app/```<br>
-  ```https://draw.io/```<br>
-- adding migration, seeding data and connecting to database
-- building CRUD function in asp.net
+
 
