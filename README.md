@@ -2,16 +2,18 @@
 This mini project is built for asp.net core CRUD practice, from scratch to testing api in API endpoint.
 
 <h2>Lesson Learned</h2>
+
 Here are some elements i have learnt after this project:<br>
-1. creating table and relationship, highly recommand using tool like<br>
-  https://lucid.app/<br>
-  https://draw.io/<br>
-2. adding migration, seeding data and connecting to database<br>
-3. building CRUD function in asp.net<br>
+* creating table and relationship, highly recommand using tool like<br>
+  [Lucid](https://lucid.app/)<br>
+  [Drawio](https://draw.io/)<br>
+* adding migration, seeding data and connecting to database<br>
+* building CRUD function in asp.net<br>
+
 
 <h2>Get started</h2>
 
-1. clone this project <br>
+1. Clone this project <br>
 ```$ git clone https://github.com/kucmoving/StudentParent-WebApi```
 
 2. Go into the repository (there is a dash in repository name but you can simply using tab to finish it, like $cd St"tab")<br>
@@ -20,26 +22,26 @@ Here are some elements i have learnt after this project:<br>
 3. Remove current origin repository<br>
 ```$ git remote remove origin```
 
-4. Create a local database
+4. Create a local database(Personally i am using MicrosoftSQL 2019)
 
-5. Add a connection string to appsetting.json (please change your own location code)<br>
+5. Add a connection string to appsetting.json (Please change your own location code after DefaultConnection)<br>
 ```{
   "ConnectionStrings": {
     "DefaultConnection": "Data Source=LAPTOP-NCT36AOV\\SQLEXPRESS;Initial Catalog=ParentStudentWebAPI;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
   },
   ```
 
-6. add migration<br>
+6. Add migration<br>
 ```dotnet ef migrations add InitialCreate```
 
-7. update database<br>
+7. Update database<br>
 ```dotnet ef database update```
 
-8. data seeding<br>
+8. Data seeding<br>
 ```$ dotnet run seeddata```<br>
 ```$ cd StudentParent WebApI```
 
-9. turn on the backend server<br>
+9. Turn on the backend server<br>
 ```$ cd StudentParent WebApI```<br>
 ```$ dotnet watch run```
 
