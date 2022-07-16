@@ -4,11 +4,13 @@ This mini project is built for asp.net core CRUD practice, from scratch to testi
 <h2>Lesson Learned</h2>
 
 Here are some elements i have learnt after this project:<br>
+* transfering data between SQL and Asp.net
 * creating table and relationship, highly recommand using tool like<br>
   [Lucid](https://lucid.app/)<br>
   [Drawio](https://draw.io/)<br>
 * adding migration, seeding data and connecting to database<br>
 * building CRUD function in asp.net<br>
+* basic concept of unit test
 
 
 <h2>Get started</h2>
