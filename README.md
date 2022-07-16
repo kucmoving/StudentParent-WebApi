@@ -20,8 +20,13 @@ This mini project is built for asp.net core CRUD practice, from scratch to testi
     "DefaultConnection": "Data Source=LAPTOP-NCT36AOV\\SQLEXPRESS;Initial Catalog=ParentStudentWebAPI;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
   },
   ```
-  
-6. data seeding <br>
+6A. add migration<br>
+```dotnet ef migrations add InitialCreate```
+
+6B. update database(br>
+```dotnet ef database update```
+
+6. data seeding<br>
 ```$ dotnet run seeddata```<br>
 ```$ cd StudentParent WebApI```
 
