@@ -1,11 +1,11 @@
 <h2>Introduction</h2> 
-This mini project is built for asp.net core CRUD practice, from scratch to testing api in API endpoint.
+This mini project is built for asp.net core CRUD practice, from scratch to testing API in Swagger.
 
 <h2>Lesson Learned</h2>
 
-Here are some elements i have learnt after this project:<br>
-* transfering data between SQL and Asp.net
-* creating table and relationship, highly recommand using tool like<br>
+Here are some elements I have learnt after this project:<br>
+* transferring data between SQL and Asp.net
+* creating table and relationship, highly recommend using tools like<br>
   [Lucid](https://lucid.app/)<br>
   [Drawio](https://draw.io/)<br>
 * adding migration, seeding data and connecting to database<br>
@@ -18,15 +18,15 @@ Here are some elements i have learnt after this project:<br>
 1. Clone this project <br>
 ```$ git clone https://github.com/kucmoving/StudentParent-WebApi```
 
-2. Go into the repository (there is a dash in repository name but you can simply using tab to finish it, like $cd St"tab")<br>
+2. Go into the repository (there is a dash in the repository name but you can simply using tab to finish it, like $cd St"tab")<br>
 ```$ cd StudentParent-WebApi ```
 
 3. Remove current origin repository<br>
 ```$ git remote remove origin```
 
-4. Create a local database(Personally i am using MicrosoftSQL 2019)
+4. Create a local database(I am using Microsoft SQL 2019)
 
-5. Add a connection string to appsetting.json (Please change your own location code after DefaultConnection)<br>
+5. Add a connection string to appsetting.json (Please change your location code after DefaultConnection)<br>
 ```{
   "ConnectionStrings": {
     "DefaultConnection": "Data Source=LAPTOP-NCT36AOV\\SQLEXPRESS;Initial Catalog=ParentStudentWebAPI;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
@@ -47,7 +47,7 @@ Here are some elements i have learnt after this project:<br>
 ```$ cd StudentParent WebApI```<br>
 ```$ dotnet watch run```
 
-10. You should now turn on the backend server successfully. You can test api base on the data in database.
+10. You should now turn on the backend server successfully. You can test API base on the data in the database.
 
 ![未命名](https://user-images.githubusercontent.com/92262463/179341772-6f2077d0-11da-4adc-919c-bd0550a77f51.jpg)
 
