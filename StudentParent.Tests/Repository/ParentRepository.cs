@@ -3,11 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using StudentParent_WebApI.Data;
 using StudentParent_WebApI.Models;
 using StudentParent_WebApI.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudentParent.Tests.Repository
 {
@@ -17,10 +12,13 @@ namespace StudentParent.Tests.Repository
         private async Task<DataContext> GetDatabaseContext()
         {
             var options = new DbContextOptionsBuilder<DataContext>()
+                //using a inmemorydatabase 
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
             var databaseContext = new DataContext(options);
             databaseContext.Database.EnsureCreated();
+
+            // to SEED! 
             if (await databaseContext.Parents.CountAsync() <= 0)
             {
                 for (int i = 1; i <= 10; i++)
@@ -42,10 +40,12 @@ namespace StudentParent.Tests.Repository
             return databaseContext;
 
         }
-        [Fact]
-        public async void ParentRepository_GetParent_ReturnsParent()
+
+
+        [Fact] //test = true!
+        public async void ParentRepository_GetParent_ReturnsParent() //naming : class--> method --> return 
         {
-            //Arrange
+            //Arrange ,setting input 
             var id  = 1;
             var dbContext = await GetDatabaseContext();
             var parentRepository = new ParentRepository(dbContext);
@@ -55,7 +55,7 @@ namespace StudentParent.Tests.Repository
 
             //Assert
             result.Should().NotBeNull();
-            result.Should().BeOfType<Parent>();
+            result.Should().BeOfType<Parent>();   
         }
 
         [Fact]
@@ -71,6 +71,9 @@ namespace StudentParent.Tests.Repository
 
             //Assert
             result.Should().NotBeNull();
+            //can be much better
+            //cannot work with some documentations with from Fluent Assertions
+            // https://fluentassertions.com/nullabletypes/
         }
     }
 }

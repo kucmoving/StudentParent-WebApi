@@ -9,7 +9,7 @@ namespace StudentParent_WebApI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentController : ControllerBase
+    public class CommentController : ControllerBase // inhertid from contollbase 
     {
         private readonly ICommentRepository _commentRepository;
         private readonly IMapper _mapper;
@@ -28,10 +28,12 @@ namespace StudentParent_WebApI.Controllers
         [HttpGet]
         public IActionResult GetComments()
         {
+            //var getComments = _commentRepository.GetComments();
+            //which recommand ? easy to understand or clear is important?
             var comments = _mapper.Map<List<CommentDto>>(_commentRepository.GetComments());
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            return Ok(comments);
+            return Ok(comments);   //inherted from Controlbase
         }
 
 
@@ -40,12 +42,12 @@ namespace StudentParent_WebApI.Controllers
         public IActionResult GetComment(int commentId)
         {
             if (!_commentRepository.CommentExists(commentId))
-                return NotFound();
+                return NotFound(); //inherted from Controlbase
 
             var comment = _mapper.Map<CommentDto>(_commentRepository.GetComment(commentId));
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            return Ok(comment);
+            return Ok(comment); //inherted from Controlbase
         }
 
         [HttpGet("student/{studentId}")]
@@ -56,24 +58,24 @@ namespace StudentParent_WebApI.Controllers
                 _commentRepository.GetCommentsbyStudentId(studentId));
 
             if (!ModelState.IsValid)
-                return BadRequest();
-            return Ok(comment);
+                return BadRequest(); 
+            return Ok(comment); //inherted from Controlbase
         }
 
 
-
-
-
         [HttpPost]
+        //get value from query string  //from body = get value from request body
+        //can del FromQuery, FromBody!
         public IActionResult CreateComment([FromQuery] int teacherId, int studentId,
             [FromBody] CommentDto commentCreate) 
         {
+
             if (commentCreate == null)
                 return BadRequest(ModelState);
 
             var comments = _commentRepository.GetComments()
                 .Where(X => X.Title.Trim().ToUpper() == commentCreate.Title.TrimEnd()
-                .ToUpper()).FirstOrDefault();
+                .ToUpper()).FirstOrDefault(); //remove space and become upper
 
             if (comments != null)
             {
@@ -97,12 +99,14 @@ namespace StudentParent_WebApI.Controllers
             return Ok("Successfully Created");
         }
 
-        [HttpPut("{commentId}")]
+
+        [HttpPut("{commentId}")] //FormBody can be del
         public IActionResult UpdateComment(int commentId, [FromBody] CommentDto updatedComment)
         {
             if (updatedComment == null)
                 return BadRequest(ModelState);
 
+            //commentId, UpdateId must be the same 
             if (commentId != updatedComment.Id)
                 return BadRequest(ModelState);
 
@@ -112,6 +116,7 @@ namespace StudentParent_WebApI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
+            //mapper with models / entities
             var commentMap = _mapper.Map<Comment>(updatedComment);
 
             if (!_commentRepository.UpdateComment(commentMap))

@@ -6,11 +6,7 @@ using StudentParent_WebApI.Controllers;
 using StudentParent_WebApI.Dto;
 using StudentParent_WebApI.Interface;
 using StudentParent_WebApI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace StudentParent.Tests.Controller
 {
@@ -20,21 +16,25 @@ namespace StudentParent.Tests.Controller
         private readonly IParentRepository _parentRepository;
         private readonly IMapper _mapper;
         private readonly ISchoolClubRepository _schoolClubRepository;
-        private readonly ICommentRepository _commentRepository;
         public ParentControllerTest()
         {
             _parentRepository = A.Fake<IParentRepository>();
             _schoolClubRepository = A.Fake<ISchoolClubRepository>();
             _mapper = A.Fake<IMapper>();
         }
+
         [Fact]
         public void ParentController_Getparents_ReturnOK()
         {
             //Arrange
             var parents = A.Fake<ICollection<ParentDto>>();
             var parentList = A.Fake<List<ParentDto>>();
+
+            //using fakeItEasy to call map (ParentDto and parents)
             A.CallTo(() => _mapper.Map<List<ParentDto>>(parents)).Returns(parentList);
 
+
+            // to instantiate ParentController
             var controller = new ParentController(_parentRepository, _mapper, _schoolClubRepository);
 
             //Act
@@ -57,7 +57,7 @@ namespace StudentParent.Tests.Controller
 
 
             var controller = new ParentController(_parentRepository , _mapper, _schoolClubRepository);
-            //Act
+            //Act 
             var result = controller.UpdateParent(parentId, parentUpdate);
             //Assert
             result.Should().NotBeNull();

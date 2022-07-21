@@ -4,22 +4,19 @@ using StudentParent_WebApI.Models;
 
 namespace StudentParent_WebApI.Repository
 {
-    public class CommentRepository : ICommentRepository
+    public class CommentRepository : ICommentRepository // inherited , interface 
     {
         private readonly DataContext _dataContext;
 
-        public CommentRepository(DataContext dataContext)
+        public CommentRepository(DataContext dataContext) // put Class as parameter in constuctor 
         {
             _dataContext = dataContext;
         }
 
         public bool CommentExists(int commentId)
         {
-            return _dataContext.Comments.Any(x => x.Id == commentId);
+            return _dataContext.Comments.Any(x => x.Id == commentId); //using linq
         }
-
-
-
 
         public Comment GetComment(int commentId)
         {
